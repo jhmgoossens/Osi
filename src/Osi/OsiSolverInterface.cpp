@@ -3528,10 +3528,14 @@ void OsiSolverInterface::checkCGraph(CoinMessageHandler *msgh)
 
 
   double timeCG = CoinCpuTime();
+  double primalTolerance = 1e-7;
+  getDblParam(OsiPrimalTolerance, primalTolerance);
+  double infinity = getInfinity();
   cgraph_ = new CoinStaticConflictGraph(getNumCols(), getColType(),
                                         getColLower(), getColUpper(),
-					getMatrixByRow(), getRowSense(),
-                                        getRightHandSide(), getRowRange());
+                                        getMatrixByRow(), getRowSense(),
+                                        getRightHandSide(), getRowRange(),
+                                        primalTolerance, infinity, getColNames());
   timeCG = CoinCpuTime()-timeCG;
 
   if (msgh && msgh->logLevel())
