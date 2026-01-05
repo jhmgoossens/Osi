@@ -3535,7 +3535,8 @@ void OsiSolverInterface::checkCGraph(CoinMessageHandler *msgh)
                                         getColLower(), getColUpper(),
                                         getMatrixByRow(), getRowSense(),
                                         getRightHandSide(), getRowRange(),
-                                        primalTolerance, infinity, getColNames());
+                                        primalTolerance, infinity, getColNames(),
+                                        getRowNames());
   timeCG = CoinCpuTime()-timeCG;
 
   if (msgh && msgh->logLevel())
